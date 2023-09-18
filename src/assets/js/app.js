@@ -22,6 +22,7 @@ class App extends AppHelpers {
     this.initiateCollapse();
     this.loadModalImgOnclick();
     initTootTip();
+    this.loadModalImgOnclick();
 
     salla.comment.event.onAdded(() => window.location.reload());
 
@@ -33,6 +34,20 @@ class App extends AppHelpers {
   log(message) {
     salla.log(`ThemeApp(Raed)::${message}`);
     return this;
+  }
+
+  loadModalImgOnclick(){
+    document.querySelectorAll('.load-img-onclick').forEach(link => {
+      link.addEventListener('click', (event)=> {
+        event.preventDefault();
+        let modal = document.querySelector('#' + link.dataset.modalId),
+            img = modal.querySelector('img'),
+            imgSrc = img.dataset.src;
+
+        modal.open();
+        img.src = imgSrc;
+      })
+    })
   }
 
   commonThings(){
